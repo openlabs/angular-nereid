@@ -6,6 +6,11 @@ using this module.
 
 This module requires that the Nereid version should atleast be 3.0.4.0
 
+## Features
+
+1. Service for nereid authentication.
+2. Directive `show-if-auth` and `hide-if-auth` for showing and hiding DOM based on authentication.
+
 ## Demo
 http://openlabs.github.io/angular-nereid-auth/
 
@@ -27,6 +32,7 @@ See the `gh-pages` branch, files `bower.json` and `index.html` for a full exampl
 
 
 ## Documentation
+
 See the `nereid-auth.js` file top comments for usage examples and documentation
 https://github.com/openlabs/angular-nereid-auth/blob/master/nereid-auth.js
 
