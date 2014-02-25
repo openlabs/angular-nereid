@@ -4,6 +4,4 @@ Version numbers correspond to `bower.json` version
 
 ## Features
 
-## Bug Fixes
-
-## Breaking Changes
+* Basic authentication and fetch token

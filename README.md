@@ -1,15 +1,17 @@
 # AngularJS Nereid Authentication Service
 
-[TODO - brief summary]
+This angular module is an abstraction of the nereid authentication service. If you are writing
+an angular web application that talks to Tryton, the basic authentication can be performed
+using this module.
+
+This module requires that the Nereid version should atleast be 3.0.4.0
 
 ## Demo
 http://openlabs.github.io/angular-nereid-auth/
 
 ## Dependencies
 - required:
-	[TODO]
-- optional
-	[TODO]
+	angular-base64
 
 See `bower.json` and `index.html` in the `gh-pages` branch for a full list / more details
 
@@ -37,7 +39,7 @@ https://github.com/openlabs/angular-nereid-auth/blob/master/nereid-auth.js
 	3. git commit your changes
 2. copy over core files (.js and .css/.less for directives) to master branch
 	1. `git checkout master`
-	2. `git checkout gh-pages nereid-auth.js nereid-auth.min.js nereid-auth.less nereid-auth.css nereid-auth.min.css`
+	2. `git checkout gh-pages nereid-auth.js nereid-auth.min.js`
 3. update README, CHANGELOG, bower.json, and do any other final polishing to prepare for publishing
 	1. git commit changes
 	2. git tag with the version number, i.e. `git tag v1.0.0`
