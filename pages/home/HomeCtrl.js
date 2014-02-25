@@ -33,6 +33,10 @@ angular.module('myApp').controller('HomeCtrl', ['$scope', 'nereidAuth', function
     // Login success should initially be false
     $scope.login_success = false;
 
+    $scope.logout = function() {
+      nereidAuth.logoutUser();
+    };
+
     $scope.submit = function() {
       nereidAuth.setapiBasePath($scope.apiBasePath);
       nereidAuth.login($scope.user.email, $scope.user.password)

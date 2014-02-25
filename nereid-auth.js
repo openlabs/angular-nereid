@@ -45,22 +45,31 @@ angular.module('openlabs.angular-nereid-auth', ['base64'])
         });
     };
 
+    var isLoggedIn = function() {
+      if (token) {
+        return true;
+      } else {
+        return false;
+      }
+    };
+
     if (token) {
       setHeaders(token);
       // Get the user information
       refreshUserInfo()
-        .error(function() {
-          logoutUser();
+        .error(function(data, status) {
+          if (status == 401) {logoutUser();}
         });
     }
 
-    var setToken = function (token) {
-      if (!token) {
+    var setToken = function (newToken) {
+      if (!newToken) {
         localStorage.removeItem('token');
       } else {
-        localStorage.setItem('token', token);
+        localStorage.setItem('token', newToken);
       }
-      setHeaders(token);
+      setHeaders(newToken);
+      token = newToken;
     };
 
     var logoutUser = function () {
@@ -87,7 +96,7 @@ angular.module('openlabs.angular-nereid-auth', ['base64'])
       )
       .success(function(data) {
         setToken(data.token);
-        refreshUserInfo();
+        user = data.user;
       })
       .error(function() {
         logoutUser();
@@ -108,7 +117,8 @@ angular.module('openlabs.angular-nereid-auth', ['base64'])
       login: login,
       logoutUser: logoutUser,
       user: user,
-      refreshUserInfo: refreshUserInfo
+      refreshUserInfo: refreshUserInfo,
+      isLoggedIn: isLoggedIn
     };
 
     //private methods and properties - should ONLY expose methods and properties 
@@ -117,4 +127,18 @@ angular.module('openlabs.angular-nereid-auth', ['base64'])
     //be private.
     return self;
 
-}]);
+  }])
+  .directive('showIfAuth', ['$animate', 'nereidAuth', function($animate, nereidAuth) {
+    return function(scope, element) {
+      scope.$watch(function() { return nereidAuth.isLoggedIn(); }, function (){
+        $animate[nereidAuth.isLoggedIn() ? 'removeClass' : 'addClass'](element, 'ng-hide');
+      });
+    };
+  }])
+  .directive('hideIfAuth', ['$animate', 'nereidAuth', function($animate, nereidAuth) {
+    return function(scope, element) {
+      scope.$watch(function() { return nereidAuth.isLoggedIn(); }, function (){
+        $animate[nereidAuth.isLoggedIn() ? 'addClass' : 'removeClass'](element, 'ng-hide');
+      });
+    };
+  }]);

@@ -6,7 +6,7 @@
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         {{ message }}
       </div>
-      <form role="form" ng-submit="submit()" ng-class="{strike: deleted, bold: important, red: error}">
+      <form role="form" ng-submit="submit()" ng-class="{strike: deleted, bold: important, red: error}" hide-if-auth>
         <div class="form-group" ng-class="{'has-error': bad_api_base_path}">
           <label class="control-label" for="apiBasePath">API Base Path</label>
           <input ng-model="apiBasePath" type="text" class="form-control" id="apiBasePath" placeholder="Enter URL without /">
@@ -19,8 +19,14 @@
           <label class="control-label" for="password">Password</label>
           <input ng-model="user.password" type="password" class="form-control" id="password" placeholder="Password">
         </div>
-        <button type="submit" class="btn btn-default" ng-disabled="isDisabled">Submit</button>
+        <button type="submit" class="btn btn-default"  ng-disabled="isDisabled">Submit</button>
       </form>
+
+      <div class="alert" show-if-auth>
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        You are logged in!
+      </div>
+      <a href="" class="btn btn-default" show-if-auth ng-click="logout()">Logout</a>
     </div>
   </div>  
 </div>
