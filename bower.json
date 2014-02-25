@@ -1,29 +1,30 @@
 {
-	"name": "angular-nereid-auth",
-	"version": "1.0.0",
-	"authors": [
-		"sharoon.thomas@openlabs.co.in"
-	],
-	"description": "AngularJS Nereid Authentication Service",
-	"keywords": [
-		"angular",
-		"angularjs",
-		"nereid",
-		"authentication",
-		"login"
-	],
-	"license": "MIT",
-	"ignore": [
-		"**/.*",
-		"node_modules",
-		"bower_components",
-		"test",
-		"tests"
-	],
-	"dependencies": {
-		"angular":"~1.2.0",
+  "name": "angular-nereid-auth",
+  "version": "1.0.0",
+  "authors": [
+    "sharoon.thomas@openlabs.co.in"
+  ],
+  "main": "nereid-auth.min.js",
+  "description": "AngularJS Nereid Authentication Service",
+  "keywords": [
+    "angular",
+    "angularjs",
+    "nereid",
+    "authentication",
+    "login"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular":"~1.2.0",
     "angular-base64": "~2.0.1"
-	},
-	"devDependencies": {
-	}
+  },
+  "devDependencies": {
+  }
 }
