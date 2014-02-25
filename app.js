@@ -19,8 +19,8 @@ config(['$routeProvider', '$locationProvider', '$compileProvider', function($rou
 	// var staticPath ='/';
 	var staticPath;
 	// staticPath ='/angular-services/angular-nereid-auth/';		//local
-	staticPath ='/';		//nodejs (local)
-	// staticPath ='/angular-nereid-auth/';		//gh-pages
+	// staticPath ='/';		//nodejs (local)
+	staticPath ='/angular-nereid-auth/';		//gh-pages
 	var appPathRoute ='/';
 	var pagesPath =staticPath+'pages/';
 	
