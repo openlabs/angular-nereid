@@ -6,8 +6,8 @@
 'use strict';
 
 angular.module('myApp', [
-'ngRoute', 'ngSanitize', 'ngTouch',		//additional angular modules
-'openlabs.angular-nereid-auth'
+'ngRoute', 'ngSanitize',
+'openlabs.angular-nereid-auth', 'base64'
 ]).
 config(['$routeProvider', '$locationProvider', '$compileProvider', function($routeProvider, $locationProvider, $compileProvider) {
 	/**
