@@ -21,7 +21,8 @@
 		"tests"
 	],
 	"dependencies": {
-		"angular":"~1.2.0"
+		"angular":"~1.2.0",
+    "angular-base64": "~2.0.1"
 	},
 	"devDependencies": {
 	}
