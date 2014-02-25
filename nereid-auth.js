@@ -7,7 +7,7 @@
 
 'use strict';
 
-angular.module('openlabs.angular-nereid-auth', [])
+angular.module('openlabs.angular-nereid-auth', ['base64'])
   .factory('nereidAuth', ['$http', '$base64', function ($http, $base64) {
 
     // If the nereid application is listening on a different address than the
