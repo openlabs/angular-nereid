@@ -33,6 +33,17 @@ See the `gh-pages` branch, files `bower.json` and `index.html` for a full exampl
 
 ## Documentation
 
+### Events/Signals
+
+The module also broadcasts the following three events:
+
+1. `nereid-auth:login`: When the login is successful (after the token is set).
+   The data returned by the server on successful login is provided as argument.
+2. `nereid-auth:loginFailed`: Broadcasted when the login fails. The `response`,
+   `status` and `headers` are sent in an object as argument.
+3. `nereid-auth:logout`: Broadcasted when the user is logged out. Remember that
+   logout could be triggered by the expiry of token too.
+
 See the `nereid-auth.js` file top comments for usage examples and documentation
 https://github.com/openlabs/angular-nereid-auth/blob/master/nereid-auth.js
 
