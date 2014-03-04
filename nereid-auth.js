@@ -8,7 +8,7 @@
 'use strict';
 
 angular.module('openlabs.angular-nereid-auth', ['base64'])
-  .factory('nereidAuth', ['$http', '$base64', function ($http, $base64) {
+  .factory('nereidAuth', ['$http', '$base64', '$rootScope', function ($http, $base64, $rootScope) {
 
     // If the nereid application is listening on a different address than the
     // root path from where the angular app was server, then this needs to be
@@ -76,6 +76,7 @@ angular.module('openlabs.angular-nereid-auth', ['base64'])
       // Clear the token
       setToken(null);
       user = {};
+      $rootScope.$broadcast("nereid-auth:logout");
     };
 
     /*
@@ -97,8 +98,14 @@ angular.module('openlabs.angular-nereid-auth', ['base64'])
       .success(function(data) {
         setToken(data.token);
         user = data.user;
+        $rootScope.$broadcast("nereid-auth:login", data);
       })
-      .error(function() {
+      .error(function(reason, status, headers) {
+        $rootScope.$broadcast("nereid-auth:loginFailed", {
+          reason: reason,
+          status: status,
+          headers: headers()
+        });
         logoutUser();
       });
     };
