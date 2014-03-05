@@ -8,6 +8,18 @@
 'use strict';
 
 angular.module('openlabs.angular-nereid-auth', ['base64'])
+  .config(['$httpProvider', function ($httpProvider) {
+    $httpProvider.interceptors.push(function ($q, $location, $rootScope) {
+      return {
+       'responseError': function (rejection) {
+          if (rejection.status===401) {
+            $rootScope.$broadcast("nereid-auth:loginRequired", rejection);
+          }
+          return $q.reject(rejection);
+        }
+      };
+    });
+  }])
   .factory('nereidAuth', ['$http', '$base64', '$rootScope', function ($http, $base64, $rootScope) {
 
     // If the nereid application is listening on a different address than the
@@ -20,7 +32,8 @@ angular.module('openlabs.angular-nereid-auth', ['base64'])
     var loginTokenEndpoint = '/login/token';
 
     // The endpoint from which the user information can be obtained
-    var userInfoEndpoint = '/me';
+    // /user_status is default nereid url to fetch user status
+    var userInfoEndpoint = '/user_status';
 
     // The token for Token based authentication.
     //
@@ -70,6 +83,7 @@ angular.module('openlabs.angular-nereid-auth', ['base64'])
       }
       setHeaders(newToken);
       token = newToken;
+      refreshUserInfo();
     };
 
     var logoutUser = function () {
@@ -106,6 +120,7 @@ angular.module('openlabs.angular-nereid-auth', ['base64'])
           status: status,
           headers: headers()
         });
+
         logoutUser();
       });
     };
@@ -148,4 +163,21 @@ angular.module('openlabs.angular-nereid-auth', ['base64'])
         $animate[nereidAuth.isLoggedIn() ? 'addClass' : 'removeClass'](element, 'ng-hide');
       });
     };
-  }]);
+  }])
+  .directive('nereidAuth', function(nereidAuth) {
+    /*
+     * Inject nereidAuth methods to scope that can be used directly with
+     * directive.
+     * Example:
+     * <a nereid-auth ng-click="logout()">Logout</a>
+     *
+    **/
+    return {
+        restrict: 'A',
+        link: function($scope) {
+          $scope.logout = function(){
+            nereidAuth.logoutUser();
+          };
+        }
+      };
+  });
