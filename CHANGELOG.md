@@ -1,5 +1,10 @@
 Version numbers correspond to `bower.json` version
 
+# 1.0.6
+
+* Bugfix: call setToken after setting user data to avoid
+  async overwrite
+
 # 1.0.5
 
 * Added signal for loginRequired triggered by interceptor.
