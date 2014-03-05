@@ -43,6 +43,9 @@ The module also broadcasts the following three events:
    `status` and `headers` are sent in an object as argument.
 3. `nereid-auth:logout`: Broadcasted when the user is logged out. Remember that
    logout could be triggered by the expiry of token too.
+4. `nereid-auth:loginRequired`: Broadcasted when a request sent to the server
+   fails with 401. This is usually indicative of a wrong token or the absence
+   of a valid login, which is required to access the resource.
 
 See the `nereid-auth.js` file top comments for usage examples and documentation
 https://github.com/openlabs/angular-nereid-auth/blob/master/nereid-auth.js
