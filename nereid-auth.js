@@ -110,8 +110,8 @@ angular.module('openlabs.angular-nereid-auth', ['base64'])
         }
       )
       .success(function(data) {
-        setToken(data.token);
         user = data.user;
+        setToken(data.token);
         $rootScope.$broadcast("nereid-auth:login", data);
       })
       .error(function(reason, status, headers) {
