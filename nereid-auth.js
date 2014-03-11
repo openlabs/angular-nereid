@@ -138,7 +138,9 @@ angular.module('openlabs.angular-nereid-auth', ['base64'])
       },
       login: login,
       logoutUser: logoutUser,
-      user: user,
+      user: function () {
+        return user;
+      },
       refreshUserInfo: refreshUserInfo,
       isLoggedIn: isLoggedIn
     };
