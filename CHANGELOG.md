@@ -1,5 +1,9 @@
 Version numbers correspond to `bower.json` version
 
+# 1.0.7
+
+* Return user as a descriptor than object
+
 # 1.0.6
 
 * Bugfix: call setToken after setting user data to avoid
