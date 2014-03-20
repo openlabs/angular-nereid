@@ -1,5 +1,10 @@
 Version numbers correspond to `bower.json` version
 
+# 1.0.8
+
+* Refresh user info only when token exists
+* Use /me as default user endpoint
+
 # 1.0.7
 
 * Return user as a descriptor than object
