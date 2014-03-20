@@ -83,7 +83,9 @@ angular.module('openlabs.angular-nereid-auth', ['base64'])
       }
       setHeaders(newToken);
       token = newToken;
-      refreshUserInfo();
+      if (newToken) {
+        refreshUserInfo();
+      }
     };
 
     var logoutUser = function () {
