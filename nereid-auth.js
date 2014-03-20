@@ -32,8 +32,8 @@ angular.module('openlabs.angular-nereid-auth', ['base64'])
     var loginTokenEndpoint = '/login/token';
 
     // The endpoint from which the user information can be obtained
-    // /user_status is default nereid url to fetch user status
-    var userInfoEndpoint = '/user_status';
+    // /me is default nereid url to fetch user status
+    var userInfoEndpoint = '/me';
 
     // The token for Token based authentication.
     //
@@ -106,8 +106,7 @@ angular.module('openlabs.angular-nereid-auth', ['base64'])
         apiBasePath + loginTokenEndpoint, {},
         {
           headers: {
-            'Authorization': 'Basic ' + basic_auth,
-            'X-Requested-With': 'XMLHttpRequest'
+            'Authorization': 'Basic ' + basic_auth
           }
         }
       )
