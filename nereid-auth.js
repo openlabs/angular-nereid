@@ -126,6 +126,30 @@ angular.module('openlabs.angular-nereid-auth', ['base64'])
       });
     };
 
+    var hasAllPermissions = function(permissions) {
+      if(!isLoggedIn() || !user.permissions || !permissions) {
+        return false;
+      }
+      for (var i in permissions) {
+        if (user.permissions.indexOf(permissions[i]) == -1) {
+          return false;
+        };
+      }
+      return true;
+    };
+
+    var hasAnyPermission = function(permissions) {
+      if(!isLoggedIn() || !user.permissions || !permissions) {
+        return false;
+      }
+      for (var i in permissions) {
+        if (user.permissions.indexOf(permissions[i]) != -1) {
+          return true;
+        };
+      }
+      return false;
+    };
+
     //public methods & properties
     var self = {
       setLoginEndpoint: function(new_end_point) {
@@ -137,6 +161,8 @@ angular.module('openlabs.angular-nereid-auth', ['base64'])
       setapiBasePath: function(new_base_path) {
         apiBasePath = new_base_path;
       },
+      hasAnyPermission: hasAnyPermission,
+      hasAllPermissions: hasAllPermissions,
       login: login,
       logoutUser: logoutUser,
       user: function () {
@@ -164,6 +190,38 @@ angular.module('openlabs.angular-nereid-auth', ['base64'])
     return function(scope, element) {
       scope.$watch(function() { return nereidAuth.isLoggedIn(); }, function (){
         $animate[nereidAuth.isLoggedIn() ? 'addClass' : 'removeClass'](element, 'ng-hide');
+      });
+    };
+  }])
+  .directive('showIfAnyPermission', ['$animate', 'nereidAuth', function($animate, nereidAuth) {
+    return function(scope, element, attrs) {
+      var permissions = scope.$eval(attrs.showIfAnyPermission);
+      scope.$watch(function() { return nereidAuth.user().permissions; }, function (){
+        $animate[nereidAuth.hasAnyPermission(permissions) ? 'removeClass' : 'addClass'](element, 'ng-hide');
+      });
+    };
+  }])
+  .directive('showIfAllPermissions', ['$animate', 'nereidAuth', function($animate, nereidAuth) {
+    return function(scope, element, attrs) {
+      var permissions = scope.$eval(attrs.showIfAllPermissions);
+      scope.$watch(function() { return nereidAuth.user().permissions; }, function (){
+        $animate[nereidAuth.hasAllPermissions(permissions) ? 'removeClass' : 'addClass'](element, 'ng-hide');
+      });
+    };
+  }])
+  .directive('hideIfAnyPermission', ['$animate', 'nereidAuth', function($animate, nereidAuth) {
+    return function(scope, element, attrs) {
+      var permissions = scope.$eval(attrs.hideIfAnyPermission);
+      scope.$watch(function() { return nereidAuth.user().permissions; }, function (){
+        $animate[nereidAuth.hasAnyPermission(permissions) ? 'addClass' : 'removeClass'](element, 'ng-hide');
+      });
+    };
+  }])
+  .directive('hideIfAllPermissions', ['$animate', 'nereidAuth', function($animate, nereidAuth) {
+    return function(scope, element, attrs) {
+      var permissions = scope.$eval(attrs.hideIfAllPermissions);
+      scope.$watch(function() { return nereidAuth.user().permissions; }, function (){
+        $animate[nereidAuth.hasAllPermissions(permissions) ? 'addClass' : 'removeClass'](element, 'ng-hide');
       });
     };
   }])
