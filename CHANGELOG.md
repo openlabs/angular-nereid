@@ -1,5 +1,9 @@
 Version numbers correspond to `bower.json` version
 
+# 1.0.9
+
+* Add permissions handling
+
 # 1.0.8
 
 * Refresh user info only when token exists
