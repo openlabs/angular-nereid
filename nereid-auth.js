@@ -133,7 +133,7 @@ angular.module('openlabs.angular-nereid-auth', ['base64'])
       for (var i in permissions) {
         if (user.permissions.indexOf(permissions[i]) == -1) {
           return false;
-        };
+        }
       }
       return true;
     };
@@ -145,7 +145,7 @@ angular.module('openlabs.angular-nereid-auth', ['base64'])
       for (var i in permissions) {
         if (user.permissions.indexOf(permissions[i]) != -1) {
           return true;
-        };
+        }
       }
       return false;
     };
