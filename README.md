@@ -1,5 +1,7 @@
 # AngularJS Nereid Authentication Service
 
+![Angular Nereid Logo](http://openlabs.github.io/angular-nereid-auth/nereid_ng.png)
+
 This angular module is an abstraction of the nereid authentication service. If you are writing
 an angular web application that talks to Tryton, the basic authentication can be performed
 using this module.
