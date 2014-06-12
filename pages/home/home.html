@@ -1,7 +1,6 @@
 <div ng-controller='HomeCtrl'>	
-  <div class="row">
-    <div class="col-md-6 col-md-offset-3">
-      <h1>Nereid Login Demo <small><a href="https://github.com/openlabs/angular-nereid-auth">View on Github</a></small></h1>
+  <div class="row" style="padding-top:60px">
+    <div class="col-md-6">
       <div class="alert" ng-class="{'alert-warning': bad_api_base_path, 'alert-error': bad_credentials, 'alert-success': login_success}" ng-if="message">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         {{ message }}
