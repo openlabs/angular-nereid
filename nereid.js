@@ -20,13 +20,32 @@ angular.module('openlabs.angular-nereid-auth', ['base64'])
       };
     });
   }])
-  .factory('nereidAuth', ['$http', '$base64', '$rootScope', function ($http, $base64, $rootScope) {
-
+  .factory('nereid', [function() {
     // If the nereid application is listening on a different address than the
     // root path from where the angular app was server, then this needs to be
     // set using setApiBasePath('https://api.mysite.com') without the trailing
     // slash.
     var apiBasePath = '';
+
+    //public methods & properties
+    var self = {
+      setApiBasePath: function(new_base_path) {
+        apiBasePath = new_base_path;
+      },
+      buildUrl: function(path) {
+        // Return a URL joined with the apiBasePath.
+        // The path must begin with a forward /
+        if (path[0] != '/') {
+          console.warn('path when using buildUrl should begin with "/"');
+        }
+        return apiBasePath + path;
+      }
+    };
+
+    return self;
+  }])
+  .factory('nereidAuth', ['$http', '$base64', '$rootScope', 'nereid', function ($http, $base64, $rootScope, nereid) {
+
 
     // The endpoint where the login POST requests must be sent
     var loginTokenEndpoint = '/login/token';
@@ -52,7 +71,7 @@ angular.module('openlabs.angular-nereid-auth', ['base64'])
     };
 
     var refreshUserInfo = function () {
-      return $http.get(apiBasePath + userInfoEndpoint)
+      return $http.get(nereid.buildUrl(userInfoEndpoint))
         .success(function(data) {
           angular.extend(user, data);
         });
@@ -103,7 +122,7 @@ angular.module('openlabs.angular-nereid-auth', ['base64'])
     var login = function(email, password) {
       var basic_auth = $base64.encode(email + ':' + password);
       return $http.post(
-        apiBasePath + loginTokenEndpoint, {},
+        nereid.buildUrl(loginTokenEndpoint), {},
         {
           headers: {
             'Authorization': 'Basic ' + basic_auth
@@ -159,7 +178,16 @@ angular.module('openlabs.angular-nereid-auth', ['base64'])
         userInfoEndpoint = new_end_point;
       },
       setapiBasePath: function(new_base_path) {
-        apiBasePath = new_base_path;
+        /*
+         * **This is due for deprecation in next version**
+         *
+         * The method is now available directly on nereid service.
+         */
+        console.warn(
+          'WARNING: Setting API basepath from nereid-auth will be removed: ' +
+          'https://github.com/openlabs/angular-nereid-auth/issues/7'
+        );
+        nereid.setApiBasePath(new_base_path);
       },
       hasAnyPermission: hasAnyPermission,
       hasAllPermissions: hasAllPermissions,
