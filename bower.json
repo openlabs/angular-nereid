@@ -1,11 +1,11 @@
 {
-  "name": "angular-nereid-auth",
-  "version": "1.0.9",
+  "name": "angular-nereid",
+  "version": "1.1.0",
   "authors": [
     "sharoon.thomas@openlabs.co.in"
   ],
-  "main": "nereid-auth.min.js",
-  "description": "AngularJS Nereid Authentication Service",
+  "main": "nereid.min.js",
+  "description": "AngularJS Nereid Service",
   "keywords": [
     "angular",
     "angularjs",
