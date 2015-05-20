@@ -1,20 +1,22 @@
-# AngularJS Nereid Authentication Service
+# AngularJS Nereid Service
 
-![Angular Nereid Logo](http://openlabs.github.io/angular-nereid-auth/nereid_ng.png)
+![Angular Nereid Logo](http://openlabs.github.io/angular-nereid/nereid_ng.png)
 
-This angular module is an abstraction of the nereid authentication service. If you are writing
-an angular web application that talks to Tryton, the basic authentication can be performed
-using this module.
+This angular module is an abstraction of the nereid service. If you are writing
+an angular web application that talks to Nereid, the basic authentication can be 
+performed using this module. Additional service could be built using the support
+features.
 
 This module requires that the Nereid version should atleast be 3.0.4.0
 
 ## Features
 
 1. Service for nereid authentication.
-2. Directive `show-if-auth` and `hide-if-auth` for showing and hiding DOM based on authentication.
+2. Directive `show-if-auth` and `hide-if-auth` for showing and hiding DOM based 
+   on authentication.
 
 ## Demo
-http://openlabs.github.io/angular-nereid-auth/
+http://openlabs.github.io/angular-nereid/
 
 ## Dependencies
 - required:
@@ -23,12 +25,17 @@ http://openlabs.github.io/angular-nereid-auth/
 See `bower.json` and `index.html` in the `gh-pages` branch for a full list / more details
 
 ## Install
-1. download the files
-	1. Bower
-		1. add `"angular-nereid-auth": "latest"` to your `bower.json` file then run `bower install` OR run `bower install angular-nereid-auth`
+
+1. download the files using bower
+
+  * add `"angular-nereid": "latest"` to your `bower.json` file then run `bower install` 
+  * OR run `bower install angular-nereid`
+
 2. include the files in your app
-	1. `nereid-auth.min.js`
-3. include the module in angular (i.e. in `app.js`) - `openlabs.angular-nereid-auth`
+
+  * `nereid.min.js`
+
+3. include the module in angular (i.e. in `app.js`) - `openlabs.angular-nereid`
 
 See the `gh-pages` branch, files `bower.json` and `index.html` for a full example.
 
@@ -49,8 +56,8 @@ The module also broadcasts the following three events:
    fails with 401. This is usually indicative of a wrong token or the absence
    of a valid login, which is required to access the resource.
 
-See the `nereid-auth.js` file top comments for usage examples and documentation
-https://github.com/openlabs/angular-nereid-auth/blob/master/nereid-auth.js
+See the `nereid.js` file top comments for usage examples and documentation
+https://github.com/openlabs/angular-nereid/blob/master/nereid.js
 
 
 ## Development
@@ -61,7 +68,7 @@ https://github.com/openlabs/angular-nereid-auth/blob/master/nereid-auth.js
 	3. git commit your changes
 2. copy over core files (.js and .css/.less for directives) to master branch
 	1. `git checkout master`
-	2. `git checkout gh-pages nereid-auth.js nereid-auth.min.js`
+	2. `git checkout gh-pages nereid.js nereid.min.js`
 3. update README, CHANGELOG, bower.json, and do any other final polishing to prepare for publishing
 	1. git commit changes
 	2. git tag with the version number, i.e. `git tag v1.0.0`
@@ -71,7 +78,7 @@ https://github.com/openlabs/angular-nereid-auth/blob/master/nereid-auth.js
 	3. `git checkout gh-pages`
 	4. `git push origin gh-pages`
 5. (optional) register bower component
-	1. `bower register angular-nereid-auth [git repo url]`
+	1. `bower register angular-nereid [git repo url]`
 
 ### Bonus commit hooks to minify
 
