@@ -72,3 +72,11 @@ https://github.com/openlabs/angular-nereid-auth/blob/master/nereid-auth.js
 	4. `git push origin gh-pages`
 5. (optional) register bower component
 	1. `bower register angular-nereid-auth [git repo url]`
+
+### Bonus commit hooks to minify
+
+Install git pre-commit hook:
+
+```
+cp .hooks/pre-commit.sh .git/hooks/pre-commit
+```
