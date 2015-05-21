@@ -9,6 +9,14 @@
 
 angular.module('openlabs.angular-nereid-auth', ['base64'])
   .config(['$httpProvider', function ($httpProvider) {
+    /*
+    X-Requested-With is removed by default.
+    https://github.com/angular/angular.js/commit/3a75b1124d062f64093a90b26630938558909e8d
+    */
+    delete $httpProvider.defaults.headers.common['X-Requested-With'];
+    $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+  }])
+  .config(['$httpProvider', function ($httpProvider) {
     $httpProvider.interceptors.push(function ($q, $location, $rootScope) {
       return {
        'responseError': function (rejection) {
